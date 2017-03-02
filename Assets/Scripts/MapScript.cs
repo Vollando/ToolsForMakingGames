@@ -28,6 +28,7 @@ public class MapScript : MonoBehaviour {
     }
 
     void OnValidate()
+        // Ensures inappropriate values are invalid
     {
         if (mapWidth < 1)
         {

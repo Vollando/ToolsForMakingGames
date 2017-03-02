@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor (typeof (MapScript))]
+// Displays Unity Edtior modifications
 public class MapGeneratorEditor : Editor {
 
     public override void OnInspectorGUI()
