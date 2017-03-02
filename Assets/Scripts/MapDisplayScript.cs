@@ -12,7 +12,7 @@ public class MapDisplayScript : MonoBehaviour {
         // Not using texturerenderer.material since that 
         // is only instantiated at runtime
         textureRender.sharedMaterial.mainTexture = texture;
-        textureRender.transform.localScale = new Vector3(texture.width, texture.height);
+        textureRender.transform.localScale = new Vector3(texture.width, 1, texture.height);
         // Sets the size of the plane to the same size as the Map
     }
 }

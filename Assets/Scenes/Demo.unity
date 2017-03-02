@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 719766962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -349,10 +349,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3493367dbb539694da050f27bf88ec9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 10
-  mapHeight: 10
-  noiseScale: 0.41
+  drawMode: 1
+  mapWidth: 100
+  mapHeight: 100
+  noiseScale: 24.86
+  octaves: 5
+  persistance: 0.5
+  lacunarity: 2
+  seed: 0
+  offset: {x: 0, y: 0}
   autoUpdate: 1
+  regions:
+  - name: Hill
+    height: 0.2
+    color: {r: 0.018813385, g: 0.051470578, b: 0, a: 0}
+  - name: Fields
+    height: 0.5
+    color: {r: 0.11105478, g: 0.25, b: 0, a: 0}
+  - name: Flatland
+    height: 1
+    color: {r: 0.38420236, g: 0.5147059, b: 0.13624568, a: 0}
 --- !u!4 &1763607988
 Transform:
   m_ObjectHideFlags: 0

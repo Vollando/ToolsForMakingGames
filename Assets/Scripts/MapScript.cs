@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour {
 
-    public enum DrawMode { NoiseMap, ColourMap};
+    public enum DrawMode {NoiseMap, ColourMap};
     public DrawMode drawMode;
     // Prevents the NoiseMap from being overridden
 
@@ -31,7 +31,7 @@ public class MapScript : MonoBehaviour {
         Color[] colourMap = new Color[mapWidth * mapHeight];
         for (int y = 0; y < mapHeight; y++)
         {
-            for (int x = 0; y < mapWidth; x++)
+            for (int x = 0; x < mapWidth; x++)
             {
                 float currentHeight = noiseMap[x, y];
                 for (int i = 0; i < regions.Length; i++)
