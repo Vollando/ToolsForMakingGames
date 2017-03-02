@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour {
 
-    public enum DrawMode {NoiseMap, ColourMap};
+    public enum DrawMode {NoiseMap, ColourMap, Mesh};
     public DrawMode drawMode;
     // Prevents the NoiseMap from being overridden
 
@@ -54,6 +54,10 @@ public class MapScript : MonoBehaviour {
         else if (drawMode == DrawMode.ColourMap)
         {
             display.DrawTextureMap(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+        }
+        else if (drawMode == DrawMode.Mesh)
+        {
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), (TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight)));
         }
     }
 
