@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour {
 
+    public enum DrawMode { NoiseMap, ColourMap};
+    public DrawMode drawMode;
+    // Prevents the NoiseMap from being overridden
+
 	public int mapWidth;
     public int mapHeight;
     public float noiseScale;
@@ -18,13 +22,39 @@ public class MapScript : MonoBehaviour {
 
     public bool autoUpdate;
 
+    public TerrainType[] regions;
+
     public void GenerateMap()
     {
         float[,] noiseMap = NoiseScript.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
+        Color[] colourMap = new Color[mapWidth * mapHeight];
+        for (int y = 0; y < mapHeight; y++)
+        {
+            for (int x = 0; y < mapWidth; x++)
+            {
+                float currentHeight = noiseMap[x, y];
+                for (int i = 0; i < regions.Length; i++)
+                {
+                    // Sets Color Value to current Height Value
+                    if (currentHeight <= regions [i].height)
+                    {
+                        colourMap[y * mapWidth + x] = regions[i].color;
+                        break;
+                    }
+                }
+            }
+        }
 
         MapDisplayScript display = FindObjectOfType<MapDisplayScript>();
-        display.DrawNoiseMap(noiseMap);
+        if (drawMode == DrawMode.NoiseMap)
+        {
+            display.DrawTextureMap(TextureGenerator.TextureFromHeightMap(noiseMap));
+        }
+        else if (drawMode == DrawMode.ColourMap)
+        {
+            display.DrawTextureMap(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+        }
     }
 
     void OnValidate()
@@ -48,4 +78,12 @@ public class MapScript : MonoBehaviour {
         }
     }
 
+}
+
+[System.Serializable]
+public struct TerrainType
+{
+    public string name;
+    public float height;
+    public Color color;
 }
