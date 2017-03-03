@@ -4,29 +4,34 @@ using UnityEngine;
 
 public static class MeshGenerator {
 
-    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve heightCurve)
+    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve heightCurve, int levelOfDetail)
     {
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height - 1) / 2f;
+        // Mesh is made up of Triangles so need to supply an array of integers in which a set of three integers points 
+        // to the vertices that make up that triangle. 
 
-        MeshData meshData = new MeshData(width, height);
+        int meshSimplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
+        int verticesPerLine = (width - 1) / meshSimplificationIncrement + 1;
+
+        MeshData meshData = new MeshData(verticesPerLine, verticesPerLine);
         int vertexIndex = 0;
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < height; y+= meshSimplificationIncrement)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < width; x+= meshSimplificationIncrement)
             {
                 meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x,y]) * heightMultiplier, topLeftZ - y);
                 meshData.uvs[vertexIndex] = new Vector2(x / (float)width, y / (float)height);
-
+                // Don't need to worry about creating triangles when at any of the vertices along the right or bottom edge
                 if (x < width-1 && y < height - 1)
                 {
-                    meshData.AddTriangle(vertexIndex, vertexIndex + width + 1, vertexIndex + width);
-                    meshData.AddTriangle(vertexIndex + width + 1, vertexIndex, vertexIndex + 1);
+                    meshData.AddTriangle(vertexIndex, vertexIndex + verticesPerLine + 1, vertexIndex + verticesPerLine);
+                    meshData.AddTriangle(vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
                 }
-
+                // Keeps track of the position within the 1D Array
                 vertexIndex++;
             }
         }
@@ -45,6 +50,10 @@ public class MeshData
 
     public MeshData(int meshWidth, int meshHeight)
     {
+        //Need to calculate beforehand how many elements the array will contain. 
+        // The vertices = width * height. The length of the triangles array requires knowing many squares
+        // the triangle vertices would form which is (width - 1) * (height - 1) * 6 because each square is made of 
+        // two triangles containing three vertices each.
         vertices = new Vector3[meshWidth * meshHeight];
         uvs = new Vector2[meshWidth * meshHeight];
         triangles = new int[(meshWidth - 1) * (meshHeight - 1) * 6];
