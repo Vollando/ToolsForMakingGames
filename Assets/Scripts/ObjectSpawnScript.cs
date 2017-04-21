@@ -15,5 +15,7 @@ public class ObjectSpawnScript : MonoBehaviour {
             if (currentHeight <= regions[i].height)
             {
 
-        }	
+            }
+        }
+    }
 }
