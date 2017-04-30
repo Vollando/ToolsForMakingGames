@@ -52,6 +52,7 @@ public class MapScript : MonoBehaviour {
         }
 
         MapDisplayScript display = FindObjectOfType<MapDisplayScript>();
+
         if (drawMode == DrawMode.NoiseMap)
         {
             display.DrawTextureMap(TextureGenerator.TextureFromHeightMap(noiseMap));
@@ -79,6 +80,10 @@ public class MapScript : MonoBehaviour {
         }
     }
 
+    private void Start()
+    {
+        GenerateMap();
+    }
 }
 
 [System.Serializable]
