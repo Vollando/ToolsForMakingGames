@@ -21,14 +21,14 @@ public static class FortGen {
 
         for (int i = 0; i < spawnLocations.Count - 1; i++)
         {
-            if (i % 10 == 0)
-            {
+            //if (i % 10 == 0)
+            //{
                 Vector3 temp = spawnLocations[i];
                 temp.x *= 10;
                 temp.y += 50;
                 temp.z *= 10;
                 GameObject fort = GameObject.Instantiate(forts[0], temp, Quaternion.identity);
-            }
+            //}
         }
 
     }
