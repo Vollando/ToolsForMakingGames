@@ -18,7 +18,7 @@ public static class FortGen {
                 spawnLocations.Add(meshData.vertices[i]);
             }
         }
-
+        GameObject lolmemes = new GameObject();
         for (int i = 0; i < spawnLocations.Count - 1; i++)
         {
             //if (i % 10 == 0)
@@ -28,6 +28,7 @@ public static class FortGen {
                 temp.y += 50;
                 temp.z *= 10;
                 GameObject fort = GameObject.Instantiate(forts[0], temp, Quaternion.identity);
+            fort.transform.SetParent(lolmemes.transform);
             //}
         }
 

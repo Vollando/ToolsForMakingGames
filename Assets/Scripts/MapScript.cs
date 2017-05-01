@@ -31,6 +31,9 @@ public class MapScript : MonoBehaviour {
 
     public GameObject[] forts;
 
+    [Range(0, 4)]
+    public int regionBorderIndex = 4;
+
     public void GenerateMap()
     {
         float[,] noiseMap = NoiseScript.GenerateNoiseMap(mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
@@ -67,7 +70,7 @@ public class MapScript : MonoBehaviour {
         {
             MeshData meshData = MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail);
             display.DrawMesh(meshData, (TextureGenerator.TextureFromColourMap(colourMap, mapChunkSize, mapChunkSize)));
-            FortGen.PlaceForts(forts, meshData, regions, 4);
+            FortGen.PlaceForts(forts, meshData, regions, regionBorderIndex);
         }
     }
 
