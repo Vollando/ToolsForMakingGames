@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procedural City", "Procedural City.csproj", "{F7423DF7-D4DB-492D-C248-265200C2ED21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procedural City.Editor", "Procedural City.Editor.csproj", "{DEAF37FD-226E-021F-6C86-D655E909733A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7423DF7-D4DB-492D-C248-265200C2ED21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7423DF7-D4DB-492D-C248-265200C2ED21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7423DF7-D4DB-492D-C248-265200C2ED21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7423DF7-D4DB-492D-C248-265200C2ED21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEAF37FD-226E-021F-6C86-D655E909733A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEAF37FD-226E-021F-6C86-D655E909733A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEAF37FD-226E-021F-6C86-D655E909733A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEAF37FD-226E-021F-6C86-D655E909733A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
