@@ -7,6 +7,8 @@ using UnityEditor;
 public class map_generator_editor : Editor {
     public override void OnInspectorGUI()
     {
+        float temp = Time.realtimeSinceStartup;
+
         generate_map mapGen = (generate_map)target;
         if(DrawDefaultInspector())
         {
@@ -24,6 +26,7 @@ public class map_generator_editor : Editor {
                     DestroyImmediate(o);
             }
             mapGen.generateMap();
+            Debug.Log("Time for Generation Function: " + (Time.realtimeSinceStartup - temp).ToString("f6"));
         }
         if (GUILayout.Button("Clear"))
         {
