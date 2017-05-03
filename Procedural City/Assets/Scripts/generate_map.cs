@@ -7,6 +7,7 @@ public class generate_map : MonoBehaviour {
     
     public GameObject[] buildings;
     public GameObject[] trees;
+    public GameObject[] fences;
     public bool placeModels;
     public bool showBorder;
     public enum DrawMode { NoiseMap, ColorMap, Mesh};
@@ -101,7 +102,7 @@ public class generate_map : MonoBehaviour {
         // have to force it to low value
         mapChunkSize = (fill ? 101 : 241);
         float heightCheck = regions[0].height;
-        List<int> treePositions = new List<int>();
+        List<int> fencePositions = new List<int>();
 
         float[,] map = perlinMap.generateMap(mapChunkSize, mapChunkSize, seed, scale, octaves, persistence,
             lacunarity, offset);
@@ -135,13 +136,13 @@ public class generate_map : MonoBehaviour {
                             if (w > 0 && map[w - 1, h] <= heightCheck)
                             {
                                 //colormap[h * mapChunkSize + w - 1] = Color.black;
-                                treePositions.Add(h * mapChunkSize + (w - 1));
+                                fencePositions.Add(h * mapChunkSize + (w - 1));
                             }
                             // check top
                             if (h > 0 && map[w, h - 1] <= heightCheck)
                             {
                                 //colormap[(h - 1) * mapChunkSize + w] = Color.black;
-                                treePositions.Add((h-1) * mapChunkSize + w);
+                                fencePositions.Add((h-1) * mapChunkSize + w);
                             }
                         }
                         else if (i == 0 && showBorder)
@@ -149,13 +150,13 @@ public class generate_map : MonoBehaviour {
                             // check left
                             if (w > 0 && map[w - 1, h] > heightCheck)
                             {
-                                treePositions.Add(h * mapChunkSize + w);
+                                fencePositions.Add(h * mapChunkSize + w);
                                 //colour = Color.black;
                             }
                             // check top
                             if (h > 0 && map[w, h - 1] > heightCheck)
                             {
-                                treePositions.Add(h * mapChunkSize + w);
+                                fencePositions.Add(h * mapChunkSize + w);
                                 //colour = Color.black;
                             }
                         }
@@ -183,14 +184,13 @@ public class generate_map : MonoBehaviour {
 
             display.DrawMesh(md, TextureGenerator.TextureFromColorMap(colormap, mapChunkSize, mapChunkSize));
 
-            for (int i = 0; i < treePositions.Count; ++i)
+            for (int i = 0; i < fencePositions.Count; ++i)
             {
-                Vector3 pos = md.vertices[treePositions[i]];
+                Vector3 pos = md.vertices[fencePositions[i]];
                 //pos.x *= 10;
                 //pos.z *= 10;
 
-
-                GameObject tree = Instantiate(trees[0], pos, Quaternion.identity);
+                GameObject fence = Instantiate(fences[1], pos, Quaternion.identity);
             }
 
                // if (fill)
@@ -228,7 +228,7 @@ public class generate_map : MonoBehaviour {
                                     Vector3 treePos = new Vector3(w - 50.0f,
                                         meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
                                         (mapChunkSize - h) - 50.0f);
-                                    Instantiate(trees[0], treePos, Quaternion.identity);
+                                    Instantiate(fences[0], treePos, Quaternion.identity);
                             }
                     }
                     }

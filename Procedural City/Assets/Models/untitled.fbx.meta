@@ -20,6 +20,7 @@ ModelImporter:
     2300000: Cylinder
     3300000: Cylinder
     4300000: Cylinder
+    6400000: Cylinder
   materials:
     importMaterials: 1
     materialName: 0
