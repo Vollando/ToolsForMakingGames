@@ -190,7 +190,7 @@ public class generate_map : MonoBehaviour {
                 //pos.x *= 10;
                 //pos.z *= 10;
 
-                GameObject fence = Instantiate(fences[1], pos, Quaternion.identity);
+                GameObject fence = Instantiate(fences[0], pos, Quaternion.identity);
             }
 
                // if (fill)
@@ -211,7 +211,7 @@ public class generate_map : MonoBehaviour {
                                 max_h = h;
                             }
                             // generate some stuff on the ground
-                            if (map[w, h] >= 0.3f && map[w, h] <= 0.5f)
+                            if (map[w, h] >= 0.3f && map[w, h] <= 0.6f)
                             {
                                 float dice = Random.Range(0.0f, 1.0f);
 
@@ -222,7 +222,65 @@ public class generate_map : MonoBehaviour {
                                         (mapChunkSize - h) - 50.0f);
                                     Instantiate(trees[0], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                                 }
-                            }
+                                else if (dice > 0.08f && dice < 0.1f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[1], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.1f && dice < 0.15f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[2], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.15f && dice < 0.25f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[3], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.25f && dice < 0.35f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[4], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.35f && dice < 0.50f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[5], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.50f && dice < 0.70f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[6], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.70f && dice < 0.80f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[8], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+                                else if (dice > 0.80f)
+                                {
+                                Vector3 treePos = new Vector3(w - 50.0f,
+                                    meshHeightCurve.Evaluate(map[w, h]) * meshHeightMultiplier,
+                                    (mapChunkSize - h) - 50.0f);
+                                Instantiate(trees[9], treePos, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                }
+
+
+                        }
                             else if (map[w, h] >= 0.83f && map[w, h] <= 0.87f)
                             {
                                     Vector3 treePos = new Vector3(w - 50.0f,
@@ -263,12 +321,24 @@ public class generate_map : MonoBehaviour {
                                 Vector3 position = new Vector3((w * buildingFootprint + j[0]) - 50.0f, mapY, (mapChunkSize - (h * buildingFootprint + j[1])) - 50.0f);
                                 if (w * buildingFootprint < cityWidth && h * buildingFootprint < cityHeight)
                                 {
-                                if (result < 0.3f)
+                                if (result < 0.2f)
                                     Instantiate(buildings[0], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
-                                else if (result > 0.3f && result < 0.7f)
+                                else if (result > 0.2f && result < 0.3f)
                                         Instantiate(buildings[1], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
-                                    else if (result > 0.7f)
-                                        Instantiate(buildings[2], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.3f && result < 0.4f)
+                                    Instantiate(buildings[2], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.4f && result < 0.5f)
+                                    Instantiate(buildings[3], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.5f && result < 0.6f)
+                                    Instantiate(buildings[4], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.6f && result < 0.7f)
+                                    Instantiate(buildings[5], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.7f && result < 0.8f)
+                                    Instantiate(buildings[6], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.8f && result < 0.9f)
+                                    Instantiate(buildings[7], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                                else if (result > 0.9f)
+                                    Instantiate(buildings[8], position, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                             }
                             }
                         }
